@@ -63,3 +63,50 @@ func upTitle(src string) string {
 
 	return strings.ToUpper(src)
 }
+
+//驼峰命名
+func toCamel(src string) string {
+	if src == "" {
+		return ""
+	}
+
+	arr := strings.Split(src, "_")
+
+	result := ""
+	for i := range arr {
+		result += upFirst(arr[i])
+	}
+	return result
+}
+
+//json,首单词小写驼峰命名
+func toJsonCamel(src string) string {
+	if src == "" {
+		return ""
+	}
+
+	arr := strings.Split(src, "_")
+
+	result := ""
+	for i := range arr {
+		if i == 0 {
+			result += arr[i]
+		} else{
+			result += upFirst(arr[i])
+		}
+	}
+	return result
+}
+
+//首字母大写
+func upFirst(src string) string {
+	if src == "" {
+		return ""
+	}
+
+	if len(src) == 1 {
+		return strings.ToUpper(string(src[0]))
+	} else {
+		return strings.ToUpper(string(src[0])) + src[1:]
+	}
+}

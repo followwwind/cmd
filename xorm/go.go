@@ -301,7 +301,8 @@ func tag(table *core.Table, col *core.Column) string {
 		if include(ignoreColumnsJSON, col.Name) {
 			tags = append(tags, "json:\"-\"")
 		} else {
-			tags = append(tags, "json:\""+col.Name+"\"")
+			//tags = append(tags, "json:\""+col.Name+"\"")
+			tags = append(tags, "json:\""+toJsonCamel(col.Name)+"\"")
 		}
 	}
 	if len(res) > 0 {
