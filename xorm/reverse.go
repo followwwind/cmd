@@ -51,7 +51,8 @@ func init() {
 }
 
 var (
-	genJson                                      bool     = false
+	genJson                            bool     = false
+	onlyJson                           bool     = false
 	ignoreColumnsJSON, created, updated, deleted []string = []string{}, []string{"created_at"}, []string{"updated_at"}, []string{"deleted_at"}
 )
 
@@ -151,6 +152,10 @@ func runReverse(cmd *Command, args []string) {
 		}
 		if j, ok := configs["genJson"]; ok {
 			genJson, err = strconv.ParseBool(j)
+		}
+
+		if j, ok := configs["onlyJson"]; ok {
+			onlyJson, err = strconv.ParseBool(j)
 		}
 
 		//[SWH|+]

@@ -303,9 +303,13 @@ func tag(table *core.Table, col *core.Column) string {
 		} else {
 			//tags = append(tags, "json:\""+col.Name+"\"")
 			tags = append(tags, "json:\""+toJsonCamel(col.Name)+"\"")
+
+			if onlyJson && len(col.Comment) > 1{
+				tags = append(tags, "desc:\""+ col.Comment +"\"")
+			}
 		}
 	}
-	if len(res) > 0 {
+	if len(res) > 0 && !onlyJson {
 		tags = append(tags, "xorm:\""+strings.Join(res, " ")+"\"")
 	}
 	if len(tags) > 0 {
